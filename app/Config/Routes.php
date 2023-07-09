@@ -47,7 +47,9 @@ $routes->post('/update-password', 'Auth\ForgotPasswordController::updatePassword
 
 // Kajian Section
 // --- Dahulu
-$routes->get('/kajian/dahulu', 'KajianController::dahulu', ['as' => 'dahulu']);
+$routes->get('/kajian/dahulu', 'Kajian\PendahuluanController::index', ['as' => 'dahulu']);
+$routes->get('/kajian/dahulu/add', 'Kajian\PendahuluanController::add', ['as' => 'dahulu-add']);
+$routes->post('/kajian/dahulu/store', 'Kajian\PendahuluanController::store', ['as' => 'dahulu-store']);
 
 
 
