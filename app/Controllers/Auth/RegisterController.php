@@ -32,10 +32,12 @@ class RegisterController extends BaseController
             ],
             'nik' => [
                 'label' => 'NIK',
-                'rules' => "required|is_unique[users.nik]",
+                'rules' => "required|is_unique[users.nik]|min_length[16]|max_length[16]",
                 'errors' => [
                     'required' => '{field} Wajib diisi !',
-                    'is_unique' => 'NIK sudah digunakan, cari yang lain!'
+                    'is_unique' => '{field} sudah digunakan, cari yang lain!',
+                    'min_length' => 'Minimal {field} 16 Angka',
+                    'max_length' => 'Maksimal {field} 16 Angka',
                 ]
             ],
             'email' => [

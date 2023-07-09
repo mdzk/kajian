@@ -44,6 +44,13 @@ $routes->get('/forgot', 'Auth\ForgotPasswordController::index', ['as' => 'forgot
 $routes->post('/forgot/password', 'Auth\ForgotPasswordController::forgotPassword', ['as' => 'forgot-password']);
 $routes->get('/reset-password/(:segment)', 'Auth\ForgotPasswordController::resetPassword/$1', ['as' => 'reset-password']);
 $routes->post('/update-password', 'Auth\ForgotPasswordController::updatePassword', ['as' => 'update-password']);
+
+// Kajian Section
+// --- Dahulu
+$routes->get('/kajian/dahulu', 'KajianController::dahulu', ['as' => 'dahulu']);
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

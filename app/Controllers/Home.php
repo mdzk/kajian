@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('admin/index');
+        return redirect()->to('kajian/dahulu');
     }
 }
