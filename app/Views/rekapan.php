@@ -59,11 +59,12 @@
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Rekapan</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="<?= route_to('cetak'); ?>" method="POST">
+                                            <form action="<?= route_to('pdf-rekapan'); ?>" method="POST">
                                                 <div class="modal-body">
                                                     <div class="mb-3">
                                                         <label for="tipe" class="form-label">Tipe Kajian</label>
                                                         <select class="form-select" name="tipe" id="tipe">
+                                                            <option value="semua" selected>Semua</option>
                                                             <option value="dahulu">Pendahuluan</option>
                                                             <option value="antara">Antara</option>
                                                             <option value="akhir">Akhir</option>
@@ -87,12 +88,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Tgl Pengajuan</th>
                                     <th>Pengguna</th>
                                     <th>Kajian</th>
                                     <th>Tipe</th>
                                     <th>Prihal</th>
                                     <th>Instansi</th>
-                                    <th>Tgl Pengajuan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -101,12 +102,12 @@
                                 foreach ($usulan as $data) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
+                                        <td><?= $data['created_at']; ?></td>
                                         <td><?= $data['name']; ?></td>
                                         <td><?= $data['nama_kajian']; ?></td>
                                         <td><span class="status-btn <?= ($data['tipe'] == 'dahulu') ? 'success' : (($data['tipe'] == 'akhir') ? 'primary' : 'light'); ?>-btn text-capitalize"><?= $data['tipe']; ?></span></td>
                                         <td><?= $data['prihal_usulan']; ?></td>
                                         <td><?= $data['instansi']; ?></td>
-                                        <td><?= $data['created_at']; ?></td>
                                         <td>
                                             <a href="<?= base_url('rekapan/show/' . $data['id_usulan']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
                                         </td>

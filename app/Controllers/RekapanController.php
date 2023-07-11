@@ -14,6 +14,7 @@ class RekapanController extends BaseController
             'usulan' => $usulan->join('users', 'users.id_users = usulan.users_id')
                 ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
                 ->where('status_usulan', 'terverifikasi')
+                ->orderBy('created_at', 'ASC')
                 ->findAll(),
         ];
         return view('rekapan', $data);

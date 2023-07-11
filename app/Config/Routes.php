@@ -33,6 +33,7 @@ $routes->get('/', 'Home::index', ['as' => 'dashboard', 'filter' => 'auth']);
 $routes->get('/json/pendahuluan', 'Home::pendahuluan', ['as' => 'json-pendahuluan', 'filter' => 'auth']);
 $routes->get('/json/antara', 'Home::antara', ['as' => 'json-antara', 'filter' => 'auth']);
 $routes->get('/json/akhir', 'Home::akhir', ['as' => 'json-akhir', 'filter' => 'auth']);
+$routes->post('/pdf/rekapan', 'PdfController::rekapan', ['as' => 'pdf-rekapan', 'filter' => 'auth:admin,pimpinan']);
 
 // Authentication Section
 // --- Login Section

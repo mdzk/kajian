@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="<?= base_url(); ?>assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <link rel="shortcut icon" href="<?= base_url(); ?>assets/images/logo.png" type="image/x-icon" />
+    <title>Kajian</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css" />
@@ -21,8 +21,8 @@
     <!-- ======== sidebar-nav start =========== -->
     <aside class="sidebar-nav-wrapper">
         <div class="navbar-logo">
-            <a href="index.html">
-                <img src="<?= base_url(); ?>assets/images/logo/logo.svg" alt="logo" />
+            <a href="<?= base_url(); ?>">
+                <img width="50px" src="<?= base_url(); ?>assets/images/logo.png" alt="logo" />
             </a>
         </div>
         <nav class="sidebar-nav">
