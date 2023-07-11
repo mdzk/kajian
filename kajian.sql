@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2023 at 07:06 PM
+-- Generation Time: Jul 11, 2023 at 06:22 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -118,8 +118,7 @@ CREATE TABLE `usulan` (
 --
 
 INSERT INTO `usulan` (`id_usulan`, `users_id`, `id_kajian`, `created_at`, `prihal_usulan`, `instansi`, `status_usulan`, `updated_at`) VALUES
-(12, 6, 3, '2023-07-11', 'Penelitian', 'Universitas Indonesia', 'tolak', '2023-07-11'),
-(13, 6, 7, '2023-07-11', 'hello revisi ya', 'adsfsd revisi', 'terverifikasi', '2023-07-11');
+(12, 6, 3, '2023-07-10', 'Penelitian', 'Universitas Indonesia', 'terverifikasi', '2023-07-10');
 
 --
 -- Indexes for dumped tables
