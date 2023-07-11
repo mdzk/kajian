@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                                 <div class="cover-image">
-                                    <img src="<?= base_url(); ?>assets/images/auth/signin-image.svg" alt="" />
+                                    <img src="<?= base_url(); ?>assets/images/auth/reset-password.svg" alt="" />
                                 </div>
                                 <div class="shape-image">
                                     <img src="<?= base_url(); ?>assets/images/auth/shape.svg" alt="" />

@@ -71,7 +71,7 @@
 
                                         <!-- end col -->
                                         <div class="col-xxl-6 col-lg-12 col-md-6">
-                                            <div class="text-start text-md-end text-lg-start text-xxl-end mb-30">
+                                            <div class="text-start mb-30">
                                                 <a href="<?= route_to('forgot'); ?>" class="hover-underline">Lupa Password?</a>
                                             </div>
                                         </div>

@@ -1,0 +1,187 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\KajianModel;
+use App\Models\UsulanModel;
+
+class UsulanController extends BaseController
+{
+    public function index()
+    {
+        $usulan = new UsulanModel();
+        if (get_user('role') == 'user') {
+            $data = [
+                'usulan' => $usulan->where(['users_id' => session('id_users')])
+                    ->where(['status_usulan !=' => 'terverifikasi'])
+                    ->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->findAll(),
+            ];
+        }
+
+        if (get_user('role') == 'pimpinan') {
+            $data = [
+                'usulan' => $usulan->where(['status_usulan' => 'proses'])
+                    ->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->findAll(),
+            ];
+        }
+
+        if (get_user('role') == 'admin') {
+            $data = [
+                'usulan' => $usulan->where(['status_usulan' => 'pending'])
+                    ->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->findAll(),
+            ];
+        }
+        return view('usulan', $data);
+    }
+
+    public function store()
+    {
+        if ($this->validate([
+            'prihal' => [
+                'label' => 'Prihal Pengajuan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
+            'instansi' => [
+                'label' => 'Nama Instansi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
+        ])) {
+            $usulan = new UsulanModel();
+            $usulan->save([
+                'prihal_usulan' => $this->request->getVar('prihal'),
+                'instansi' => $this->request->getVar('instansi'),
+                'id_kajian' => $this->request->getVar('id_kajian'),
+                'status_usulan' => 'pending',
+                'users_id' => session('id_users'),
+            ]);
+
+            session()->setFlashdata('pesan', 'Pengajuan berhasil');
+            return redirect()->back()->withInput();
+        } else {
+            // JIKA TIDAK VALID
+            Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function edit($id)
+    {
+        if (get_user('role') !== 'user') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        if ($usulan->find($id) == NULL) {
+            return redirect()->to('usulan');
+        }
+        $usulanData = $usulan->where('users_id', session('id_users'))->whereIn('status_usulan', ['revisi', 'pending'])->find($id);
+        if ($usulanData === null) {
+            return redirect()->to('usulan');
+        }
+
+        $data = [
+            'usulan'  => $usulan->join('kajian', 'kajian.id_kajian = usulan.id_kajian')->find($id),
+        ];
+        return view('admin/usulan-edit', $data);
+    }
+    // file authorized
+    public function redirect($property)
+    {
+        if (get_user('role') == 'user') {
+            $usulan = new UsulanModel();
+            $data   = $usulan->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                ->where('usulan.id_kajian', $property)
+                ->where('users_id', session('id_users'))
+                ->where('status_usulan', 'terverifikasi')
+                ->first();
+            if ($data == NULL) {
+                return redirect()->back();
+            }
+            return redirect()->to(base_url('file/' . $data['file']));
+        } else {
+            $kajian = new KajianModel();
+            $data   = $kajian->find($property);
+            return redirect()->to(base_url('file/' . $data['file']));
+        }
+    }
+
+    // status change
+    public function proses()
+    {
+        if (get_user('role') !== 'admin') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        $data = [
+            'status_usulan' => 'proses',
+        ];
+        $usulan->set($data);
+        $usulan->where('id_usulan', $this->request->getVar('id_usulan'));
+        $usulan->update();
+
+        session()->setFlashdata('pesan', 'Data berhasil diverifikasi');
+        return redirect()->to('usulan');
+    }
+
+    public function verification()
+    {
+        if (get_user('role') !== 'pimpinan') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        $data = [
+            'status_usulan' => 'terverifikasi',
+        ];
+        $usulan->set($data);
+        $usulan->where('id_usulan', $this->request->getVar('id_usulan'));
+        $usulan->update();
+
+        session()->setFlashdata('pesan', 'Data berhasil diverifikasi');
+        return redirect()->to('usulan');
+    }
+
+    public function revision()
+    {
+        if (get_user('role') !== 'pimpinan') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        $data = [
+            'status_usulan' => 'terverifikasi',
+        ];
+        $usulan->set($data);
+        $usulan->where('id_usulan', $this->request->getVar('id_usulan'));
+        $usulan->update();
+
+        session()->setFlashdata('pesan', 'Data berhasil direvisi');
+        return redirect()->to('usulan');
+    }
+
+    public function decline()
+    {
+        if (get_user('role') !== 'pimpinan') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        $data = [
+            'status_usulan' => 'tolak',
+        ];
+        $usulan->set($data);
+        $usulan->where('id_usulan', $this->request->getVar('id_usulan'));
+        $usulan->update();
+
+        session()->setFlashdata('pesan', 'Data berhasil ditolak');
+        return redirect()->to('usulan');
+    }
+}

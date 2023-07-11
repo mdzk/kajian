@@ -80,6 +80,7 @@ class RegisterController extends BaseController
                 'nik' => $this->request->getVar('nik'),
                 'status' => $this->request->getVar('status'),
                 'role' => 'user',
+                'verification' => false,
                 'picture' => 'default.jpg',
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             ]);

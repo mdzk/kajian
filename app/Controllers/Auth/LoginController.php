@@ -20,7 +20,12 @@ class LoginController extends BaseController
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
         $data = $model->where('email', $email)->first();
+
         if ($data) {
+            if ($data['verification'] == false) {
+                $session->setFlashdata('errors', 'Tidak dapat login, pengguna belum diverifikasi');
+                return redirect()->to('/login');
+            }
             $pass = $data['password'];
             $verify_pass = password_verify($password, $pass);
             if ($verify_pass) {
@@ -29,6 +34,7 @@ class LoginController extends BaseController
                     'name'      => $data['name'],
                     'role'      => $data['role'],
                     'email'  => $data['email'],
+                    'verification' => $data['verification'],
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);

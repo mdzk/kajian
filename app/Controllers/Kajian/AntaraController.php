@@ -7,29 +7,29 @@ use App\Controllers\BaseController;
 use App\Models\KajianModel;
 use App\Models\UsulanModel;
 
-class PendahuluanController extends BaseController
+class AntaraController extends BaseController
 {
     public function index()
     {
         $kajian = new KajianModel();
         $data   = [
-            'kajian' => $kajian->where('tipe', 'dahulu')->findAll(),
+            'kajian' => $kajian->where('tipe', 'antara')->findAll(),
         ];
-        return view('admin/dahulu', $data);
+        return view('admin/antara', $data);
     }
 
     public function add()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
-        return view('admin/dahulu-add');
+        return view('admin/antara-add');
     }
 
     public function store()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         if ($this->validate([
             'kajian' => [
@@ -76,12 +76,12 @@ class PendahuluanController extends BaseController
                 'nama_kajian' => $this->request->getVar('kajian'),
                 'bidang' => $this->request->getVar('bidang'),
                 'prihal' => $this->request->getVar('prihal'),
-                'tipe' => 'dahulu',
+                'tipe' => 'antara',
                 'file' => $fileName
             ]);
 
             session()->setFlashdata('pesan', 'Kajian berhasil ditambahkan');
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         } else {
             // JIKA TIDAK VALID
             Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
@@ -92,38 +92,38 @@ class PendahuluanController extends BaseController
     public function delete()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         $kajian = new KajianModel();
         if ($kajian->find($this->request->getVar('id_kajian')) == NULL) {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         $data = $kajian->find($this->request->getVar('id_kajian'));
         unlink('file/' . $data['file']);
         $kajian->delete($this->request->getVar('id_kajian'));
         session()->setFlashdata('pesan', 'Kajian berhasil dihapus');
-        return redirect()->to('kajian/dahulu');
+        return redirect()->to('kajian/antara');
     }
 
     public function edit($id)
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         $kajian = new KajianModel();
         if ($kajian->find($id) == NULL) {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         $data = [
             'kajian'  => $kajian->find($id),
         ];
-        return view('admin/dahulu-edit', $data);
+        return view('admin/antara-edit', $data);
     }
 
     public function update()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         if ($this->validate([
             'kajian' => [
@@ -199,7 +199,7 @@ class PendahuluanController extends BaseController
             $kajian->update();
 
             session()->setFlashdata('pesan', 'Kajian berhasil diubah');
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         } else {
             // JIKA TIDAK VALID
             Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
@@ -217,18 +217,18 @@ class PendahuluanController extends BaseController
                 ->where('status_usulan', 'terverifikasi')
                 ->first();
             if ($data == NULL) {
-                return redirect()->to('kajian/dahulu');
+                return redirect()->to('kajian/antara');
             }
         }
 
         $kajian = new KajianModel();
         $data = $kajian->find($id);
         if ($data == NULL) {
-            return redirect()->to('kajian/dahulu');
+            return redirect()->to('kajian/antara');
         }
         $data = [
             'kajian'  => $kajian->find($id),
         ];
-        return view('admin/dahulu-show', $data);
+        return view('admin/antara-show', $data);
     }
 }

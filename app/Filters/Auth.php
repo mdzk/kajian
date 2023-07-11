@@ -14,6 +14,10 @@ class Auth implements FilterInterface
             return redirect()->to('/login');
         }
 
+        if ($_SESSION['verification'] == false) {
+            return redirect()->to('login');
+        }
+
         if (!empty($arguments[0])) {
 
             if (!in_array($_SESSION['role'], $arguments)) {
