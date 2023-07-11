@@ -75,7 +75,7 @@
                                         <td><?= $data['instansi']; ?></td>
                                         <td><?= $data['nama_kajian']; ?></td>
                                         <td><?= $data['created_at']; ?></td>
-                                        <td><span class="status-btn warning-btn text-capitalize"><?= $data['status_usulan']; ?></span></td>
+                                        <td><span class="status-btn <?= $data['status_usulan'] == 'tolak' ? 'danger' : 'warning' ?>-btn text-capitalize"><?= $data['status_usulan']; ?></span></td>
                                         <td>
                                             <?php if (($data['status_usulan'] == 'pending' || $data['status_usulan'] == 'revisi')  && get_user('role') == 'user') : ?>
                                                 <a href="<?= base_url('usulan/edit/' . $data['id_usulan']); ?>" class="btn btn-warning"><i class="lni lni-pencil"></i></a>
@@ -89,7 +89,7 @@
                                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form action="<?= route_to('dahulu-delete'); ?>" method="POST">
+                                                            <form action="<?= route_to('usulan-delete'); ?>" method="POST">
                                                                 <input type="number" name="id_usulan" hidden value="<?= $data['id_usulan']; ?>">
                                                                 <div class="modal-body">
                                                                     Apakah anda yakin ingin menghapus data ini?

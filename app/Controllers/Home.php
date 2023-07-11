@@ -6,6 +6,11 @@ class Home extends BaseController
 {
     public function index()
     {
-        return redirect()->to('kajian/dahulu');
+
+        if (get_user('role') == 'user') {
+            return redirect()->to('kajian/dahulu');
+        }
+
+        return view('home');
     }
 }

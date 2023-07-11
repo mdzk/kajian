@@ -95,6 +95,76 @@ class UsulanController extends BaseController
         ];
         return view('admin/usulan-edit', $data);
     }
+
+    public function update()
+    {
+        if ($this->validate([
+            'prihal' => [
+                'label' => 'Prihal Pengajuan',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
+            'instansi' => [
+                'label' => 'Nama Instansi',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
+        ])) {
+            $usulan = new UsulanModel();
+
+            $id = $this->request->getVar('id_usulan');
+            if (get_user('role') !== 'user') {
+                return redirect()->to('usulan');
+            }
+            if ($usulan->find($id) == NULL) {
+                return redirect()->to('usulan');
+            }
+            $usulanData = $usulan->where('users_id', session('id_users'))->whereIn('status_usulan', ['revisi', 'pending'])->find($id);
+            if ($usulanData === null) {
+                return redirect()->to('usulan');
+            }
+
+            $data = [
+                'status_usulan' => 'pending',
+                'prihal_usulan' => $this->request->getVar('prihal'),
+                'instansi' => $this->request->getVar('instansi'),
+            ];
+            $usulan->set($data);
+            $usulan->where('id_usulan', $this->request->getVar('id_usulan'));
+            $usulan->update();
+
+            session()->setFlashdata('pesan', 'Pengajuan revisi berhasil');
+            return redirect()->to('usulan');
+        } else {
+            // JIKA TIDAK VALID
+            Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
+            return redirect()->back()->withInput();
+        }
+    }
+    public function delete()
+    {
+        $id = $this->request->getVar('id_usulan');
+        if (get_user('role') !== 'user') {
+            return redirect()->to('usulan');
+        }
+        $usulan = new UsulanModel();
+        if ($usulan->find($id) == NULL) {
+            return redirect()->to('usulan');
+        }
+        $usulanData = $usulan->where('users_id', session('id_users'))->whereIn('status_usulan', ['pending'])->find($id);
+        if ($usulanData === null) {
+            return redirect()->to('usulan');
+        }
+
+        $usulan->delete($this->request->getVar('id_usulan'));
+        session()->setFlashdata('pesan', 'Data berhasil dihapus');
+        return redirect()->to('usulan');
+    }
+
     // file authorized
     public function redirect($property)
     {
@@ -117,7 +187,7 @@ class UsulanController extends BaseController
     }
 
     // status change
-    public function proses()
+    public function process()
     {
         if (get_user('role') !== 'admin') {
             return redirect()->to('usulan');

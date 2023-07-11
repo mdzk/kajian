@@ -71,11 +71,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="prihal" class="form-label">Prihal</label>
-                            <input type="text" value="<?= $usulan['prihal_usulan']; ?>" class="form-control" id="prihal" name="prihal" placeholder="Penelitian">
+                            <input type="text" required value="<?= $usulan['prihal_usulan']; ?>" class="form-control" id="prihal" name="prihal" placeholder="Penelitian">
                         </div>
                         <div class="mb-3">
                             <label for="instansi" class="form-label">Instansi</label>
-                            <input type="text" value="<?= $usulan['instansi']; ?>" class="form-control" id="instansi" name="instansi" placeholder="Universitas Indonesia">
+                            <input type="text" required value="<?= $usulan['instansi']; ?>" class="form-control" id="instansi" name="instansi" placeholder="Universitas Indonesia">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

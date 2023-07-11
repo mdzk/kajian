@@ -27,6 +27,15 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
+                <li class="nav-item <?= get_url(2, '') ? '' : 'active' ?>">
+                    <a href="<?= base_url(''); ?>" class="">
+                        <span class="icon">
+                            <i class="lni lni-folder"></i>
+                        </span>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+
                 <li class="nav-item nav-item-has-children">
                     <a href="#0" class="<?= get_url(2, 'kajian') ? '' : 'collapsed' ?>" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="<?= get_url(2, 'kajian') ? 'true' : 'false' ?>" aria-label="Toggle navigation">
                         <span class="icon">
