@@ -30,6 +30,9 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index', ['as' => 'dashboard', 'filter' => 'auth']);
+$routes->get('/json/pendahuluan', 'Home::pendahuluan', ['as' => 'json-pendahuluan', 'filter' => 'auth']);
+$routes->get('/json/antara', 'Home::antara', ['as' => 'json-antara', 'filter' => 'auth']);
+$routes->get('/json/akhir', 'Home::akhir', ['as' => 'json-akhir', 'filter' => 'auth']);
 
 // Authentication Section
 // --- Login Section
@@ -83,6 +86,22 @@ $routes->get('/usulan/edit/(:num)', 'UsulanController::edit/$1', ['as' => 'usula
 $routes->post('/usulan/update', 'UsulanController::update', ['as' => 'usulan-update', 'filter' => 'auth:user']);
 $routes->post('/usulan/delete', 'UsulanController::delete', ['as' => 'usulan-delete', 'filter' => 'auth:user']);
 
+// Rekapan Section
+$routes->get('/rekapan', 'RekapanController::index', ['as' => 'rekapan', 'filter' => 'auth:admin']);
+$routes->get('/rekapan/show/(:num)', 'RekapanController::show/$1', ['as' => 'rekapan-show', 'filter' => 'auth:admin']);
+
+// Users Section
+$routes->get('/users', 'UsersController::index', ['as' => 'users', 'filter' => 'auth:admin']);
+$routes->post('/users/delete', 'UsersController::delete', ['as' => 'users-delete', 'filter' => 'auth:admin']);
+$routes->post('/users/update', 'UsersController::update', ['as' => 'users-update', 'filter' => 'auth:admin']);
+
+// Verification Section
+$routes->get( '/verification', 'VerificationController::index', ['as' => 'verification', 'filter' => 'auth:admin']);
+$routes->post('/verification/update', 'VerificationController::update', ['as' => 'verification-update', 'filter' => 'auth:admin']);
+
+// Setting Section
+$routes->get('/setting', 'SettingController::index', ['as' => 'setting', 'filter' => 'auth']);
+$routes->post('/setting/update', 'SettingController::update', ['as' => 'setting-update', 'filter' => 'auth']);
 /*
  * --------------------------------------------------------------------
  * Additional Routing

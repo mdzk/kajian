@@ -1,14 +1,13 @@
 <?php
 if (!function_exists('get_url')) {
-    function get_url($segmentNumber, $segmentValue)
+    function get_url($segmentValue)
     {
-        $uri = current_url(true);
-        $total = $uri->getTotalSegments();
+        $currentURL = uri_string();
 
-        if ($total < $segmentNumber) {
-            return false;
+        if ($segmentValue === 'dashboard') {
+            return $currentURL === '';
         }
 
-        return $uri->getSegment($segmentNumber) == $segmentValue;
+        return strpos($currentURL, $segmentValue) !== false;
     }
 }

@@ -93,7 +93,7 @@ class UsulanController extends BaseController
         $data = [
             'usulan'  => $usulan->join('kajian', 'kajian.id_kajian = usulan.id_kajian')->find($id),
         ];
-        return view('admin/usulan-edit', $data);
+        return view('usulan-edit', $data);
     }
 
     public function update()

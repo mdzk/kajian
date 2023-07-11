@@ -27,35 +27,37 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <li class="nav-item <?= get_url(2, '') ? '' : 'active' ?>">
-                    <a href="<?= base_url(''); ?>" class="">
-                        <span class="icon">
-                            <i class="lni lni-folder"></i>
-                        </span>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
+                <?php if (get_user('role') !== 'user') : ?>
+                    <li class="nav-item <?= get_url('dashboard') ? 'active' : '' ?>">
+                        <a href="<?= base_url(''); ?>" class="">
+                            <span class="icon">
+                                <i class="lni lni-folder"></i>
+                            </span>
+                            <span class="text">Dashboard </span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="<?= get_url(2, 'kajian') ? '' : 'collapsed' ?>" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="<?= get_url(2, 'kajian') ? 'true' : 'false' ?>" aria-label="Toggle navigation">
+                    <a href="#0" class="<?= get_url('kajian') ? '' : 'collapsed' ?>" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="<?= get_url('kajian') ? 'true' : 'false' ?>" aria-label="Toggle navigation">
                         <span class="icon">
                             <i class="lni lni-briefcase"></i>
                         </span>
                         <span class="text">Kajian</span>
                     </a>
-                    <ul id="ddmenu_1" class="collapse <?= get_url(2, 'kajian') ? 'show' : '' ?> dropdown-nav">
+                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
                         <li>
-                            <a href="<?= base_url('kajian/dahulu'); ?>" class="<?= get_url(3, 'dahulu') ? 'active' : '' ?>"> Dahulu </a>
+                            <a href="<?= base_url('kajian/dahulu'); ?>" class="<?= get_url('dahulu') ? 'active' : '' ?>"> Dahulu </a>
                         </li>
                     </ul>
-                    <ul id="ddmenu_1" class="collapse <?= get_url(2, 'kajian') ? 'show' : '' ?> dropdown-nav">
+                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
                         <li>
-                            <a href="<?= base_url('kajian/antara'); ?>" class="<?= get_url(3, 'antara') ? 'active' : '' ?>"> Antara </a>
+                            <a href="<?= base_url('kajian/antara'); ?>" class="<?= get_url('antara') ? 'active' : '' ?>"> Antara </a>
                         </li>
                     </ul>
-                    <ul id="ddmenu_1" class="collapse <?= get_url(2, 'kajian') ? 'show' : '' ?> dropdown-nav">
+                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
                         <li>
-                            <a href="<?= base_url('kajian/akhir'); ?>" class="<?= get_url(3, 'akhir') ? 'active' : '' ?>"> Akhir </a>
+                            <a href="<?= base_url('kajian/akhir'); ?>" class="<?= get_url('akhir') ? 'active' : '' ?>"> Akhir </a>
                         </li>
                     </ul>
                 </li>
@@ -64,7 +66,7 @@
                     <hr />
                 </span>
 
-                <li class="nav-item <?= get_url(2, 'usulan') ? 'active' : '' ?>">
+                <li class="nav-item <?= get_url('usulan') ? 'active' : '' ?>">
                     <a href="<?= route_to('usulan'); ?>" class="">
                         <span class="icon">
                             <i class="lni lni-folder"></i>
@@ -73,20 +75,38 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="tables.html">
-                        <span class="icon">
-                            <i class="lni lni-archive"></i>
-                        </span>
-                        <span class="text">Rekapan</span>
-                    </a>
-                </li>
+                <?php if (get_user('role') == 'admin') : ?>
+                    <li class="nav-item <?= get_url('rekapan') ? 'active' : '' ?>">
+                        <a href="<?= route_to('rekapan'); ?>">
+                            <span class="icon">
+                                <i class="lni lni-archive"></i>
+                            </span>
+                            <span class="text">Rekapan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= get_url('verification') ? 'active' : '' ?>">
+                        <a href="<?= route_to('verification'); ?>">
+                            <span class="icon">
+                                <i class="lni lni-checkmark-circle"></i>
+                            </span>
+                            <span class="text">Verifikasi Akun</span>
+                        </a>
+                    </li>
+                    <li class="nav-item <?= get_url('users') ? 'active' : '' ?>">
+                        <a href="<?= route_to('users'); ?>">
+                            <span class="icon">
+                                <i class="lni lni-users"></i>
+                            </span>
+                            <span class="text">Kelola Akun</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
             </ul>
         </nav>
         <div class="promo-box">
-            <a href="https://plainadmin.com/pro" target="_blank" rel="nofollow" class="main-btn primary-btn btn-hover">
-                Purchase Now
+            <a href="<?= route_to('setting'); ?>" class="main-btn primary-btn btn-hover">
+                Profile
             </a>
         </div>
     </aside>
@@ -118,7 +138,7 @@
                                         <div class="info">
                                             <h6><?= get_user('name'); ?></h6>
                                             <div class="image">
-                                                <img src="<?= base_url(); ?>assets/images/profile/profile-image.png" alt="" />
+                                                <img src="<?= base_url(); ?>picture/<?= get_user('picture'); ?>" alt="" />
                                                 <span class="status"></span>
                                             </div>
                                         </div>
@@ -127,7 +147,7 @@
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profile">
                                     <li>
-                                        <a href="#0"> <i class="lni lni-cog"></i> Settings </a>
+                                        <a href="<?= route_to('setting'); ?>"> <i class="lni lni-cog"></i> Settings </a>
                                     </li>
                                     <li>
                                         <a href="<?= base_url('logout'); ?>"> <i class="lni lni-exit"></i> Sign Out </a>
