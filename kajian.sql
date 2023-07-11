@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2023 at 05:11 PM
+-- Generation Time: Jul 11, 2023 at 07:06 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -92,9 +92,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_users`, `name`, `password`, `email`, `role`, `picture`, `status`, `username`, `nik`, `verification`) VALUES
-(4, 'Muhammad Dzaky', '$2y$10$Vk2/WWQnOnEoW30i2.9NMuoxEglJ8iUJi.3keczc6mZDLdFWpEb96', 'admin@mail.com', 'admin', '1689088157_c086a1ea1ca545c8a3f6.png', 'Pegawai', 'admin', '1872020202020001', 1),
+(4, 'Muhammad Dzaky', '$2y$10$RdcZNMrvgg6gMZoHfVuB1ubJqdrwHy4e368SrCEkTgrHIGilC/B2u', 'admin@mail.com', 'admin', '1689088157_c086a1ea1ca545c8a3f6.png', 'Pegawai', 'admin', '1872020202020001', 1),
 (6, 'Budi', '$2y$10$yEhGgTdi/oXKFSMB5SB75utEb7nxL9ujCYlTVldE4Z2Imz6teBzwa', 'user@mail.com', 'user', '1689088243_373b9d33e4937daa5fb3.png', 'Mahasiswa', 'user', '2131221213213122', 1),
-(7, 'Pimpinan', '$2y$10$jLrOeqEsGa1pVYQGSPQkbekW8j6oHgzN4GEwzKcOMAeiwsGOc8CrC', 'pimpinan@mail.com', 'user', 'default.jpg', 'pegawai', 'pimpinan', '1231232132132132', 1);
+(7, 'Pimpinan', '$2y$10$jLrOeqEsGa1pVYQGSPQkbekW8j6oHgzN4GEwzKcOMAeiwsGOc8CrC', 'pimpinan@mail.com', 'pimpinan', 'default.jpg', 'pegawai', 'pimpinan', '1231232132132132', 1);
 
 -- --------------------------------------------------------
 
@@ -118,11 +118,8 @@ CREATE TABLE `usulan` (
 --
 
 INSERT INTO `usulan` (`id_usulan`, `users_id`, `id_kajian`, `created_at`, `prihal_usulan`, `instansi`, `status_usulan`, `updated_at`) VALUES
-(5, 5, 3, '2023-07-11', 'Penelitian', 'Universitas Indonesia', 'terverifikasi', '2023-07-11'),
-(7, 5, 5, '2023-05-11', 'Penelitian', 'Universitas Indonesia', 'terverifikasi', '2023-07-11'),
-(8, 5, 3, '2023-01-11', 'Penelitian', 'Universitas Indonesia', 'terverifikasi', '2021-07-11'),
-(9, 5, 5, '2023-11-11', 'Penelitian', 'Universitas Indonesia', 'proses', '2023-07-11'),
-(10, 5, 7, '2023-11-11', 'Penelitian', 'Universitas Indonesia', 'terverifikasi', '2023-07-11');
+(12, 6, 3, '2023-07-11', 'Penelitian', 'Universitas Indonesia', 'tolak', '2023-07-11'),
+(13, 6, 7, '2023-07-11', 'hello revisi ya', 'adsfsd revisi', 'terverifikasi', '2023-07-11');
 
 --
 -- Indexes for dumped tables
@@ -178,7 +175,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `usulan`
 --
 ALTER TABLE `usulan`
-  MODIFY `id_usulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usulan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
