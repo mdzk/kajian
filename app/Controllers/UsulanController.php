@@ -129,7 +129,7 @@ class UsulanController extends BaseController
             }
 
             $data = [
-                'status_usulan' => 'pending',
+                'status_usulan' => 'proses',
                 'prihal_usulan' => $this->request->getVar('prihal'),
                 'instansi' => $this->request->getVar('instansi'),
             ];
@@ -228,7 +228,7 @@ class UsulanController extends BaseController
         }
         $usulan = new UsulanModel();
         $data = [
-            'status_usulan' => 'terverifikasi',
+            'status_usulan' => 'revisi',
         ];
         $usulan->set($data);
         $usulan->where('id_usulan', $this->request->getVar('id_usulan'));

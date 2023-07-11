@@ -93,9 +93,27 @@
                       <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'terverifikasi')) : ?>
                         <a href="<?= base_url('redirect/' . $data['id_kajian']); ?>" class="btn btn-light"><i class="lni lni-remove-file"></i></a>
                       <?php endif; ?>
-                      <?php if (!cekUsulan(session('id_users'), $data['id_kajian'], 'terverifikasi') && get_user('role') == 'user') : ?>
-                        <span class="status-btn close-btn">Tidak memiliki akses</span>
+
+                      <?php if (!cekUsulan(session('id_users'), $data['id_kajian'], NULL) && get_user('role') == 'user') : ?>
+                        <span class="status-btn close-btn">Tidak memiliki akses <?= cekUsulan(session('id_users'), $data['id_kajian'], NULL); ?></span>
                       <?php endif; ?>
+
+                      <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'pending') && get_user('role') == 'user') : ?>
+                        <span class="status-btn warning-btn">Sedang diajukan</span>
+                      <?php endif; ?>
+
+                      <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'proses') && get_user('role') == 'user') : ?>
+                        <span class="status-btn warning-btn">Sedang diproses</span>
+                      <?php endif; ?>
+
+                      <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'revisi') && get_user('role') == 'user') : ?>
+                        <span class="status-btn warning-btn">Harap direvisi</span>
+                      <?php endif; ?>
+
+                      <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'tolak') && get_user('role') == 'user') : ?>
+                        <span class="status-btn close-btn">Akses ditolak</span>
+                      <?php endif; ?>
+
                     </td>
                     <td>
                       <?php if (!cekUsulan(session('id_users'), $data['id_kajian'], NULL) && get_user('role') == 'user') : ?>

@@ -80,29 +80,31 @@
                                             <?php if (($data['status_usulan'] == 'pending' || $data['status_usulan'] == 'revisi')  && get_user('role') == 'user') : ?>
                                                 <a href="<?= base_url('usulan/edit/' . $data['id_usulan']); ?>" class="btn btn-warning"><i class="lni lni-pencil"></i></a>
 
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapususulan<?= $data['id_usulan']; ?>"><i class="lni lni-trash-can"></i></button>
-                                                <!--Hapus Kajian Modal Content -->
-                                                <div class="modal fade" id="hapususulan<?= $data['id_usulan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <?php if ($data['status_usulan'] == 'pending') : ?>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapususulan<?= $data['id_usulan']; ?>"><i class="lni lni-trash-can"></i></button>
+                                                    <!--Hapus Kajian Modal Content -->
+                                                    <div class="modal fade" id="hapususulan<?= $data['id_usulan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <form action="<?= route_to('usulan-delete'); ?>" method="POST">
+                                                                    <input type="number" name="id_usulan" hidden value="<?= $data['id_usulan']; ?>">
+                                                                    <div class="modal-body">
+                                                                        Apakah anda yakin ingin menghapus data ini?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tidak</button>
+                                                                        <button type="submit" name="submit" class="btn btn-primary">Ya</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                            <form action="<?= route_to('usulan-delete'); ?>" method="POST">
-                                                                <input type="number" name="id_usulan" hidden value="<?= $data['id_usulan']; ?>">
-                                                                <div class="modal-body">
-                                                                    Apakah anda yakin ingin menghapus data ini?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tidak</button>
-                                                                    <button type="submit" name="submit" class="btn btn-primary">Ya</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!--Hapus Kajian Modal Content End-->
+                                                    <!--Hapus Kajian Modal Content End-->
+                                                <?php endif; ?>
                                             <?php endif; ?>
 
                                             <?php if (get_user('role') == 'admin') : ?>

@@ -46,10 +46,39 @@
                 <div class="card-style mb-30">
                     <div class="title d-flex flex-wrap align-items-center justify-content-between ">
                         <div class="left">
-                            <h6 class="text-medium mb-30">Data Usulan Terverifikasi</h6>
+                            <h6 class="text-medium mb-3">Data Usulan Terverifikasi</h6>
                         </div>
                         <div class="right">
-
+                            <?php if (get_user('role') == 'admin') : ?>
+                                <button type="button" class="mb-3 btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#cetak"><i class="lni lni-printer d-flex me-2"></i> <span>Cetak</span></button>
+                                <!--Ajukan Kajian Modal Content -->
+                                <div class="modal fade" id="cetak" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Rekapan</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="<?= route_to('cetak'); ?>" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="tipe" class="form-label">Tipe Kajian</label>
+                                                        <select class="form-select" name="tipe" id="tipe">
+                                                            <option value="dahulu">Pendahuluan</option>
+                                                            <option value="antara">Antara</option>
+                                                            <option value="akhir">Akhir</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!-- End Title -->

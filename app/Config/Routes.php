@@ -56,7 +56,7 @@ $routes->post('/kajian/dahulu/store', 'Kajian\PendahuluanController::store', ['a
 $routes->post('/kajian/dahulu/delete', 'Kajian\PendahuluanController::delete', ['as' => 'dahulu-delete', 'filter' => 'auth:admin']);
 $routes->get('/kajian/dahulu/edit/(:num)', 'Kajian\PendahuluanController::edit/$1', ['as' => 'dahulu-edit', 'filter' => 'auth:admin']);
 $routes->post('/kajian/dahulu/update', 'Kajian\PendahuluanController::update', ['as' => 'dahulu-update', 'filter' => 'auth:admin']);
-$routes->get('/kajian/dahulu/show/(:num)', 'Kajian\PendahuluanController::show/$1', ['as' => 'dahulu-show', 'filter' => 'auth:admin,pimpinan']);
+$routes->get('/kajian/dahulu/show/(:num)', 'Kajian\PendahuluanController::show/$1', ['as' => 'dahulu-show', 'filter' => 'auth']);
 // --- Dahulu
 $routes->get('/kajian/antara', 'Kajian\AntaraController::index', ['as' => 'antara', 'filter' => 'auth']);
 $routes->get('/kajian/antara/add', 'Kajian\AntaraController::add', ['as' => 'antara-add', 'filter' => 'auth:admin']);
@@ -64,7 +64,7 @@ $routes->post('/kajian/antara/store', 'Kajian\AntaraController::store', ['as' =>
 $routes->post('/kajian/antara/delete', 'Kajian\AntaraController::delete', ['as' => 'antara-delete', 'filter' => 'auth:admin']);
 $routes->get('/kajian/antara/edit/(:num)', 'Kajian\AntaraController::edit/$1', ['as' => 'antara-edit', 'filter' => 'auth:admin']);
 $routes->post('/kajian/antara/update', 'Kajian\AntaraController::update', ['as' => 'antara-update', 'filter' => 'auth:admin']);
-$routes->get('/kajian/antara/show/(:num)', 'Kajian\AntaraController::show/$1', ['as' => 'antara-show', 'filter' => 'auth:admin,pimpinan']);
+$routes->get('/kajian/antara/show/(:num)', 'Kajian\AntaraController::show/$1', ['as' => 'antara-show', 'filter' => 'auth']);
 // --- Dahulu
 $routes->get('/kajian/akhir', 'Kajian\AkhirController::index', ['as' => 'akhir', 'filter' => 'auth']);
 $routes->get('/kajian/akhir/add', 'Kajian\AkhirController::add', ['as' => 'akhir-add', 'filter' => 'auth:admin']);
@@ -72,19 +72,20 @@ $routes->post('/kajian/akhir/store', 'Kajian\AkhirController::store', ['as' => '
 $routes->post('/kajian/akhir/delete', 'Kajian\AkhirController::delete', ['as' => 'akhir-delete', 'filter' => 'auth:admin']);
 $routes->get('/kajian/akhir/edit/(:num)', 'Kajian\AkhirController::edit/$1', ['as' => 'akhir-edit', 'filter' => 'auth:admin']);
 $routes->post('/kajian/akhir/update', 'Kajian\AkhirController::update', ['as' => 'akhir-update', 'filter' => 'auth:admin']);
-$routes->get('/kajian/akhir/show/(:num)', 'Kajian\AkhirController::show/$1', ['as' => 'akhir-show', 'filter' => 'auth:admin,pimpinan']);
+$routes->get('/kajian/akhir/show/(:num)', 'Kajian\AkhirController::show/$1', ['as' => 'akhir-show', 'filter' => 'auth']);
 
 // Usulan Section
 $routes->get('/redirect/(:any)', 'UsulanController::redirect/$1', ['as' => 'redirect', 'filter' => 'auth']);
 $routes->get('/usulan', 'UsulanController::index', ['as' => 'usulan', 'filter' => 'auth']);
 $routes->post('/usulan/store', 'UsulanController::store', ['as' => 'usulan-store', 'filter' => 'auth:user']);
-$routes->post('/usulan/verification', 'UsulanController::verification', ['as' => 'usulan-verification', 'filter' => 'auth:admin']);
-$routes->post('/usulan/process', 'UsulanController::process', ['as' => 'usulan-process', 'filter' => 'auth:pimpinan']);
-$routes->post('/usulan/decline', 'UsulanController::decline', ['as' => 'usulan-decline', 'filter' => 'auth:pimpinan']);
-$routes->post('/usulan/revision', 'UsulanController::revision', ['as' => 'usulan-revision', 'filter' => 'auth:pimpinan']);
 $routes->get('/usulan/edit/(:num)', 'UsulanController::edit/$1', ['as' => 'usulan-edit', 'filter' => 'auth:user']);
 $routes->post('/usulan/update', 'UsulanController::update', ['as' => 'usulan-update', 'filter' => 'auth:user']);
 $routes->post('/usulan/delete', 'UsulanController::delete', ['as' => 'usulan-delete', 'filter' => 'auth:user']);
+
+$routes->post('/usulan/process', 'UsulanController::process', ['as' => 'usulan-process', 'filter' => 'auth:admin']);
+$routes->post('/usulan/verification', 'UsulanController::verification', ['as' => 'usulan-verification', 'filter' => 'auth:pimpinan']);
+$routes->post('/usulan/decline', 'UsulanController::decline', ['as' => 'usulan-decline', 'filter' => 'auth:pimpinan']);
+$routes->post('/usulan/revision', 'UsulanController::revision', ['as' => 'usulan-revision', 'filter' => 'auth:pimpinan']);
 
 // Rekapan Section
 $routes->get('/rekapan', 'RekapanController::index', ['as' => 'rekapan', 'filter' => 'auth:admin']);
@@ -96,7 +97,7 @@ $routes->post('/users/delete', 'UsersController::delete', ['as' => 'users-delete
 $routes->post('/users/update', 'UsersController::update', ['as' => 'users-update', 'filter' => 'auth:admin']);
 
 // Verification Section
-$routes->get( '/verification', 'VerificationController::index', ['as' => 'verification', 'filter' => 'auth:admin']);
+$routes->get('/verification', 'VerificationController::index', ['as' => 'verification', 'filter' => 'auth:admin']);
 $routes->post('/verification/update', 'VerificationController::update', ['as' => 'verification-update', 'filter' => 'auth:admin']);
 
 // Setting Section
