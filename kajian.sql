@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 11, 2023 at 06:22 PM
+-- Generation Time: Jul 13, 2023 at 02:45 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,9 +41,9 @@ CREATE TABLE `kajian` (
 --
 
 INSERT INTO `kajian` (`id_kajian`, `nama_kajian`, `bidang`, `prihal`, `file`, `tipe`) VALUES
-(3, 'kkn1', 'rid', 'kkn2 edit', '1688989928_44f54ce30ad588030854.pdf', 'dahulu'),
+(3, 'kkn1 edit', 'a', 'a', '1688989928_44f54ce30ad588030854.pdf', 'dahulu'),
 (5, 'kajian akhir', 'bidang akhir', 'akhir prihal', '1688992560_19b91ebd0a01db45ea76.pdf', 'akhir'),
-(6, 'kkn2', 'sf edit', 'dsf', '1689021920_717a95008f8adb0925dc.pdf', 'dahulu'),
+(6, 'kkn2', 's', 'dsf', '1689021920_717a95008f8adb0925dc.pdf', 'dahulu'),
 (7, 'kajian antara', 'kominfo', 'kkkn1 ', '1689083564_98b5eb24fb35f662b9df.pdf', 'antara');
 
 -- --------------------------------------------------------

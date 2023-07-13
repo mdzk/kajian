@@ -162,7 +162,7 @@ class AntaraController extends BaseController
             $file = $this->request->getFile('file');
             if ($file->getError() == 4) {
                 $data = [
-                    'nama_Kajian' => $this->request->getVar('nama_Kajian'),
+                    'nama_kajian' => $this->request->getVar('kajian'),
                     'bidang' => $this->request->getVar('bidang'),
                     'prihal' => $this->request->getVar('prihal'),
                 ];
@@ -179,7 +179,7 @@ class AntaraController extends BaseController
                 ])) {
                     $fileName = $file->getRandomName();
                     $data = [
-                        'nama_Kajian' => $this->request->getVar('nama_Kajian'),
+                        'nama_kajian' => $this->request->getVar('kajian'),
                         'bidang' => $this->request->getVar('bidang'),
                         'prihal' => $this->request->getVar('prihal'),
                         'file' => $fileName,
