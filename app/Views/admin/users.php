@@ -78,6 +78,15 @@
                                                         <input type="text" placeholder="Pegawai" class="form-control" name="status" required>
                                                     </div>
                                                     <div class="mb-3">
+                                                        <label for="role" class="form-label">Role</label>
+                                                        <select class="form-select" name="role" required>
+                                                            <option value="" disabled selected>-- Pilih Role --</option>
+                                                            <option value="user">User</option>
+                                                            <option value="pimpinan">Pimpinan</option>
+                                                            <option value="admin">Admin</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
                                                         <label for="password" class="form-label">Password</label>
                                                         <input type="password" placeholder="***********" class="form-control" name="password" required>
                                                     </div>

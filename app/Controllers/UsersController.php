@@ -116,8 +116,8 @@ class UsersController extends BaseController
                 'email' => $this->request->getVar('email'),
                 'nik' => $this->request->getVar('nik'),
                 'status' => $this->request->getVar('status'),
-                'role' => 'user',
-                'verification' => false,
+                'role' => $this->request->getVar('role'),
+                'verification' => true,
                 'picture' => 'default.jpg',
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             ]);
