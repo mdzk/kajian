@@ -96,6 +96,7 @@ $routes->get('/rekapan/show/(:num)', 'RekapanController::show/$1', ['as' => 'rek
 $routes->get('/users', 'UsersController::index', ['as' => 'users', 'filter' => 'auth:admin']);
 $routes->post('/users/delete', 'UsersController::delete', ['as' => 'users-delete', 'filter' => 'auth:admin']);
 $routes->post('/users/update', 'UsersController::update', ['as' => 'users-update', 'filter' => 'auth:admin']);
+$routes->post('/users/store', 'UsersController::store', ['as' => 'users-store', 'filter' => 'auth:admin']);
 
 // Verification Section
 $routes->get('/verification', 'VerificationController::index', ['as' => 'verification', 'filter' => 'auth:admin']);

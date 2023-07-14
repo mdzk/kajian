@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 13, 2023 at 02:45 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jul 14, 2023 at 08:35 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,10 +41,10 @@ CREATE TABLE `kajian` (
 --
 
 INSERT INTO `kajian` (`id_kajian`, `nama_kajian`, `bidang`, `prihal`, `file`, `tipe`) VALUES
-(3, 'kkn1 edit', 'a', 'a', '1688989928_44f54ce30ad588030854.pdf', 'dahulu'),
-(5, 'kajian akhir', 'bidang akhir', 'akhir prihal', '1688992560_19b91ebd0a01db45ea76.pdf', 'akhir'),
-(6, 'kkn2', 's', 'dsf', '1689021920_717a95008f8adb0925dc.pdf', 'dahulu'),
-(7, 'kajian antara', 'kominfo', 'kkkn1 ', '1689083564_98b5eb24fb35f662b9df.pdf', 'antara');
+(3, 'Kajian Pendahuluan 1', 'Rida', 'KKN', '1688989928_44f54ce30ad588030854.pdf', 'dahulu'),
+(5, 'Kajian Akhir', 'BIdang Akhir', 'Akhir Prihal', '1688992560_19b91ebd0a01db45ea76.pdf', 'akhir'),
+(6, 'Kajian Pendahuluan 2', 'Rida', 'KKN', '1689021920_717a95008f8adb0925dc.pdf', 'dahulu'),
+(7, 'Kajian Antara 1', 'Kominfo', 'KKN', '1689083564_98b5eb24fb35f662b9df.pdf', 'antara');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,6 @@ CREATE TABLE `users` (
   `role` enum('user','admin','pimpinan','') NOT NULL,
   `picture` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
   `nik` varchar(16) NOT NULL,
   `verification` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -91,10 +90,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_users`, `name`, `password`, `email`, `role`, `picture`, `status`, `username`, `nik`, `verification`) VALUES
-(4, 'Muhammad Dzaky', '$2y$10$RdcZNMrvgg6gMZoHfVuB1ubJqdrwHy4e368SrCEkTgrHIGilC/B2u', 'admin@mail.com', 'admin', '1689088157_c086a1ea1ca545c8a3f6.png', 'Pegawai', 'admin', '1872020202020001', 1),
-(6, 'Budi', '$2y$10$yEhGgTdi/oXKFSMB5SB75utEb7nxL9ujCYlTVldE4Z2Imz6teBzwa', 'user@mail.com', 'user', '1689088243_373b9d33e4937daa5fb3.png', 'Mahasiswa', 'user', '2131221213213122', 1),
-(7, 'Pimpinan', '$2y$10$jLrOeqEsGa1pVYQGSPQkbekW8j6oHgzN4GEwzKcOMAeiwsGOc8CrC', 'pimpinan@mail.com', 'pimpinan', 'default.jpg', 'pegawai', 'pimpinan', '1231232132132132', 1);
+INSERT INTO `users` (`id_users`, `name`, `password`, `email`, `role`, `picture`, `status`, `nik`, `verification`) VALUES
+(4, 'Muhammad Dzaky', '$2y$10$RdcZNMrvgg6gMZoHfVuB1ubJqdrwHy4e368SrCEkTgrHIGilC/B2u', 'admin@mail.com', 'admin', '1689088157_c086a1ea1ca545c8a3f6.png', 'Pegawai', '1872020202020001', 1),
+(6, 'Budi', '$2y$10$yEhGgTdi/oXKFSMB5SB75utEb7nxL9ujCYlTVldE4Z2Imz6teBzwa', 'user@mail.com', 'user', '1689088243_373b9d33e4937daa5fb3.png', 'Mahasiswa', '2131221213213122', 1),
+(7, 'Pimpinan', '$2y$10$jLrOeqEsGa1pVYQGSPQkbekW8j6oHgzN4GEwzKcOMAeiwsGOc8CrC', 'pimpinan@mail.com', 'pimpinan', 'default.jpg', 'pegawai', '1231232132132132', 1);
 
 -- --------------------------------------------------------
 
@@ -168,7 +167,7 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `usulan`

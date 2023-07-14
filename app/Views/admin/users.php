@@ -49,7 +49,52 @@
                             <h6 class="text-medium mb-30">Data Pengguna</h6>
                         </div>
                         <div class="right">
-
+                            <?php if (get_user('role') == 'admin') : ?>
+                                <button type="button" class="mb-3 btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#cetak"><i class="lni lni-plus d-flex me-2"></i> <span>Akun Baru</span></button>
+                                <!--Ajukan Kajian Modal Content -->
+                                <div class="modal fade" id="cetak" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Akun Baru</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="<?= route_to('users-store'); ?>" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="name" class="form-label">Nama</label>
+                                                        <input type="text" placeholder="Budi" class="form-control" name="name" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="nik" class="form-label">NIK</label>
+                                                        <input type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="18720202020001" class="form-control" name="nik" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">Email</label>
+                                                        <input type="email" placeholder="budi@mail.com" class="form-control" name="email" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="status" class="form-label">Status</label>
+                                                        <input type="text" placeholder="Pegawai" class="form-control" name="status" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="password" class="form-label">Password</label>
+                                                        <input type="password" placeholder="***********" class="form-control" name="password" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="password2" class="form-label">Konfirmasi Password</label>
+                                                        <input type="password" placeholder="***********" class="form-control" name="password2" required>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <!-- End Title -->
@@ -130,26 +175,16 @@
                                                         <div class="form-group has-icon-left">
                                                             <label for="name">Nama</label>
                                                             <div class="position-relative">
-                                                                <input disabled value="<?= $user['name']; ?>" type="text" name="name" class="form-control" placeholder="Masukkan nama" id="name">
+                                                                <input value="<?= $user['name']; ?>" type="text" name="name" class="form-control" placeholder="Masukkan nama" id="name">
                                                                 <div class="form-control-icon">
                                                                     <i class="bi bi-person"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group has-icon-left">
-                                                            <label for="username">Username</label>
-                                                            <div class="position-relative">
-                                                                <input disabled value="<?= $user['username']; ?>" type="text" name="username" class="form-control" placeholder="Masukkan Username" id="username">
-                                                                <div class="form-control-icon">
-                                                                    <i class="bi bi-person-badge"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
                                                         <div class="form-group">
                                                             <label for="roles">Roles</label>
-                                                            <select class="form-select" name="role" id="roles">
+                                                            <select disabled class="form-select" id="roles">
                                                                 <option value="admin" <?php if ($user['role'] == 'admin') {
                                                                                             echo 'selected';
                                                                                         } ?>>Admin</option>

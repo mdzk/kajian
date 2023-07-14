@@ -27,16 +27,14 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
-                <?php if (get_user('role') !== 'user') : ?>
-                    <li class="nav-item <?= get_url('dashboard') ? 'active' : '' ?>">
-                        <a href="<?= base_url(''); ?>" class="">
-                            <span class="icon">
-                                <i class="lni lni-folder"></i>
-                            </span>
-                            <span class="text">Dashboard </span>
-                        </a>
-                    </li>
-                <?php endif; ?>
+                <li class="nav-item <?= get_url('dashboard') ? 'active' : '' ?>">
+                    <a href="<?= base_url(''); ?>" class="">
+                        <span class="icon">
+                            <i class="lni lni-folder"></i>
+                        </span>
+                        <span class="text">Dashboard </span>
+                    </a>
+                </li>
 
                 <li class="nav-item nav-item-has-children">
                     <a href="#0" class="<?= get_url('kajian') ? '' : 'collapsed' ?>" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="<?= get_url('kajian') ? 'true' : 'false' ?>" aria-label="Toggle navigation">

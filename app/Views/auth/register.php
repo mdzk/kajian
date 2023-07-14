@@ -64,13 +64,6 @@
                                         <!-- end col -->
                                         <div class="col-12">
                                             <div class="input-style-1">
-                                                <label>Username</label>
-                                                <input autofocus type="text" name="username" placeholder="budi123" required />
-                                            </div>
-                                        </div>
-                                        <!-- end col -->
-                                        <div class="col-12">
-                                            <div class="input-style-1">
                                                 <label>NIK</label>
                                                 <input autofocus maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" name="nik" placeholder="1872020202020001" required />
                                             </div>

@@ -22,14 +22,6 @@ class RegisterController extends BaseController
                     'required' => '{field} Wajib diisi !',
                 ]
             ],
-            'username' => [
-                'label' => 'Username',
-                'rules' => "required|is_unique[users.username]",
-                'errors' => [
-                    'required' => '{field} Wajib diisi !',
-                    'is_unique' => 'Username sudah digunakan, cari yang lain!'
-                ]
-            ],
             'nik' => [
                 'label' => 'NIK',
                 'rules' => "required|is_unique[users.nik]|min_length[16]|max_length[16]",
@@ -75,7 +67,6 @@ class RegisterController extends BaseController
             $user = new UsersModel();
             $user->save([
                 'name' => $this->request->getVar('name'),
-                'username' => $this->request->getVar('username'),
                 'email' => $this->request->getVar('email'),
                 'nik' => $this->request->getVar('nik'),
                 'status' => $this->request->getVar('status'),

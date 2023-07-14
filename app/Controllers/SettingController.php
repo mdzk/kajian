@@ -29,14 +29,6 @@ class SettingController extends BaseController
                     'required' => '{field} Wajib diisi !',
                 ]
             ],
-            'username' => [
-                'label' => 'Username',
-                'rules' => "required|is_unique[users.username, id_users, $id]",
-                'errors' => [
-                    'required' => '{field} Wajib diisi !',
-                    'is_unique' => 'Username sudah digunakan, cari yang lain!'
-                ]
-            ],
             'nik' => [
                 'label' => 'NIK',
                 'rules' => "required|is_unique[users.nik, id_users, $id]",
@@ -74,7 +66,6 @@ class SettingController extends BaseController
                 $user->replace([
                     'id_users' => $this->request->getVar('id_users'),
                     'name' => $this->request->getVar('name') ? $this->request->getVar('name') : $data['name'],
-                    'username' => $this->request->getVar('username') ? $this->request->getVar('username') : $data['username'],
                     'nik' => $this->request->getVar('nik') ? $this->request->getVar('nik') : $data['nik'],
                     'email' => $this->request->getVar('email') ? $this->request->getVar('email') : $data['email'],
                     'status' => $this->request->getVar('status') ? $this->request->getVar('status') : $data['status'],
@@ -88,7 +79,6 @@ class SettingController extends BaseController
                 $user->replace([
                     'id_users' => $this->request->getVar('id_users'),
                     'name' => $this->request->getVar('name') ? $this->request->getVar('name') : $data['name'],
-                    'username' => $this->request->getVar('username') ? $this->request->getVar('username') : $data['username'],
                     'nik' => $this->request->getVar('nik') ? $this->request->getVar('nik') : $data['nik'],
                     'email' => $this->request->getVar('email') ? $this->request->getVar('email') : $data['email'],
                     'status' => $this->request->getVar('status') ? $this->request->getVar('status') : $data['status'],

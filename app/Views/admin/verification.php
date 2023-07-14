@@ -66,7 +66,6 @@
                             <thead>
                                 <tr>
                                     <th>Nama</th>
-                                    <th>Username</th>
                                     <th>NIK</th>
                                     <th>Email</th>
                                     <th>Status</th>
@@ -77,7 +76,6 @@
                                 <?php foreach ($users as $user) : ?>
                                     <tr class="">
                                         <td class="text-bold-500"><?= $user['name']; ?></td>
-                                        <td class="text-bold-500"><?= $user['username']; ?></td>
                                         <td class="text-bold-500"><?= $user['nik']; ?></td>
                                         <td class="text-bold-500"><?= $user['email']; ?></td>
                                         <td class="text-bold-500"><?= $user['status']; ?></td>

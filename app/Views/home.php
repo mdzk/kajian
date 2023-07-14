@@ -160,7 +160,12 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="title mb-30">
-                        <h2>Dashboard</h2>
+                        <?php if (get_user('role') == 'admin' || get_user('role') == 'pimpinan') : ?>
+                            <h2>Dashboard</h2>
+                        <?php endif; ?>
+                        <?php if (get_user('role') == 'user') : ?>
+                            <h2>Selamat Datang, <?= get_user('name'); ?></h2>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <!-- end col -->
@@ -180,81 +185,128 @@
             <!-- end row -->
         </div>
         <!-- ========== title-wrapper end ========== -->
-        <div class="row">
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon primary">
-                        <i class="lni lni-empty-file"></i>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">Kajian Pendahuluan</h6>
-                        <h3 class="text-bold mb-10"><?= $dahulu; ?></h3>
-                    </div>
-                </div>
-                <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon purple">
-                        <i class="lni lni-empty-file"></i>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">Kajian Antara</h6>
-                        <h3 class="text-bold mb-10"><?= $antara; ?></h3>
-                    </div>
-                </div>
-                <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon orange">
-                        <i class="lni lni-empty-file"></i>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">Kajian Akhir</h6>
-                        <h3 class="text-bold mb-10"><?= $akhir; ?></h3>
-                    </div>
-                </div>
-                <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-            <div class="col-xl-3 col-lg-4 col-sm-6">
-                <div class="icon-card mb-30">
-                    <div class="icon success">
-                        <i class="lni lni-user"></i>
-                    </div>
-                    <div class="content">
-                        <h6 class="mb-10">Total User</h6>
-                        <h3 class="text-bold mb-10"><?= $user; ?></h3>
-                    </div>
-                </div>
-                <!-- End Icon Cart -->
-            </div>
-            <!-- End Col -->
-        </div>
-        <!-- End Row -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card-style mb-30">
-                    <div class="title d-flex flex-wrap justify-content-between">
-                        <div class="left">
-                            <h6 class="text-medium mb-10">Jumlah Data Terverifikasi <?= date('Y'); ?></h6>
-                        </div>
-                        <div class="right">
-                        </div>
-                    </div>
-                    <!-- End Title -->
-                    <div class="chart">
-                        <canvas id="Chart1" style="width: 100%; height: 400px"></canvas>
-                    </div>
-                    <!-- End Chart -->
-                </div>
-            </div>
-        </div>
-        <!-- End Row -->
 
+        <?php if (get_user('role') == 'admin' || get_user('role') == 'pimpinan') : ?>
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon primary">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Pendahuluan</h6>
+                            <h3 class="text-bold mb-10"><?= $dahulu; ?></h3>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon purple">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Antara</h6>
+                            <h3 class="text-bold mb-10"><?= $antara; ?></h3>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon orange">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Akhir</h6>
+                            <h3 class="text-bold mb-10"><?= $akhir; ?></h3>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon success">
+                            <i class="lni lni-user"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Total User</h6>
+                            <h3 class="text-bold mb-10"><?= $user; ?></h3>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-style mb-30">
+                        <div class="title d-flex flex-wrap justify-content-between">
+                            <div class="left">
+                                <h6 class="text-medium mb-10">Jumlah Data Terverifikasi <?= date('Y'); ?></h6>
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+                        <!-- End Title -->
+                        <div class="chart">
+                            <canvas id="Chart1" style="width: 100%; height: 400px"></canvas>
+                        </div>
+                        <!-- End Chart -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Row -->
+        <?php endif; ?>
+
+        <?php if (get_user('role') == 'user') : ?>
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon primary">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Pendahuluan</h6>
+                            <a href="<?= route_to('dahulu') ?>" class="text-bold mb-10">Kunjugi</a>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon purple">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Antara</h6>
+                            <a href="<?= route_to('antara') ?>" class="text-bold mb-10">Kunjugi</a>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                    <div class="icon-card mb-30">
+                        <div class="icon orange">
+                            <i class="lni lni-empty-file"></i>
+                        </div>
+                        <div class="content">
+                            <h6 class="mb-10">Kajian Akhir</h6>
+                            <a href="<?= route_to('akhir') ?>" class="text-bold mb-10">Kunjugi</a>
+                        </div>
+                    </div>
+                    <!-- End Icon Cart -->
+                </div>
+                <!-- End Col -->
+            </div>
+
+        <?php endif; ?>
     </div>
     <!-- end container -->
 </section>
