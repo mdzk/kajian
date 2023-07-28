@@ -32,6 +32,7 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Home::index', ['as' => 'dashboard', 'filter' => 'auth']);
 $routes->get('/json/kajian', 'Home::kajian', ['as' => 'json-kajian', 'filter' => 'auth']);
 $routes->post('/pdf/rekapan/semua', 'PdfController::rekapanSemua', ['as' => 'pdf-rekapan', 'filter' => 'auth:admin,pimpinan']);
+$routes->post('/pdf/rekapan/filter', 'PdfController::rekapanFilter', ['as' => 'pdf-rekapan-filter', 'filter' => 'auth:admin,pimpinan']);
 
 // Authentication Section
 // --- Login Section
@@ -92,7 +93,7 @@ $routes->post('/usulan/delete', 'UsulanController::delete', ['as' => 'usulan-del
 $routes->post('/usulan/process', 'UsulanController::process', ['as' => 'usulan-process', 'filter' => 'auth:admin']);
 $routes->post('/usulan/verification', 'UsulanController::verification', ['as' => 'usulan-verification', 'filter' => 'auth:pimpinan']);
 $routes->post('/usulan/decline', 'UsulanController::decline', ['as' => 'usulan-decline', 'filter' => 'auth:pimpinan']);
-$routes->post('/usulan/revision', 'UsulanController::revision', [ 'as' => 'usulan-revision', 'filter' => 'auth:pimpinan']);
+$routes->post('/usulan/revision', 'UsulanController::revision', ['as' => 'usulan-revision', 'filter' => 'auth:pimpinan']);
 $routes->post('/usulan/revisionadmin', 'UsulanController::revisionAdmin', ['as' => 'usulan-revision-admin', 'filter' => 'auth:admin']);
 
 // Rekapan Section

@@ -72,21 +72,41 @@
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cetak Rekapan</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="<?= route_to('pdf-rekapan'); ?>" method="POST">
+                                            <form action="<?= route_to('pdf-rekapan-filter'); ?>" method="POST">
                                                 <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="tipe" class="form-label">Tipe Kajian</label>
-                                                        <select class="form-select" name="tipe" id="tipe">
-                                                            <option value="semua" selected>Semua</option>
-                                                            <option value="dahulu">Pendahuluan</option>
-                                                            <option value="antara">Antara</option>
-                                                            <option value="akhir">Akhir</option>
+                                                    <div class="form-group mb-3">
+                                                        <label for="name">Pilih Bulan</label>
+                                                        <select name="bulan" class="form-control">
+                                                            <option value="1">Januari</option>
+                                                            <option value="2">Februari</option>
+                                                            <option value="3">Maret</option>
+                                                            <option value="4">April</option>
+                                                            <option value="5">Mei</option>
+                                                            <option value="6">Juni</option>
+                                                            <option value="7">Juli</option>
+                                                            <option value="8">Agustus</option>
+                                                            <option value="9">September</option>
+                                                            <option value="10">Oktober</option>
+                                                            <option value="11">November</option>
+                                                            <option value="12">Desember</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label for="name">Pilih Tahun</label>
+                                                        <select name="tahun" class="form-control">
+                                                            <?php for ($x = $usulan_lama; $x <= $usulan_terbaru; $x++) : ?>
+                                                                <option name="bulan" value="<?= $x; ?>"><?= $x; ?></option>
+                                                            <?php endfor; ?>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="button" class="btn btn-light-primary ml-1" data-bs-dismiss="modal">
+                                                        <span class="d-sm-block">Tutup</span>
+                                                    </button>
+                                                    <button name="submit" type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                                        <span class="d-sm-block">Cetak</span>
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>

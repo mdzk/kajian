@@ -11,13 +11,30 @@ class RekapanController extends BaseController
         helper('form');
         $usulan = new UsulanModel();
 
-        $data = [
-            'usulan' => $usulan->join('users', 'users.id_users = usulan.users_id')
-                ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
-                ->where('status_usulan', 'terverifikasi')
-                ->orderBy('created_at', 'ASC')
-                ->findAll(),
-        ];
+        $usulanTerlama = $usulan->where('status_usulan', 'terverifikasi')->where('created_at <=', date('Y-m-d'))->orderBy('created_at', "ASC")->first();
+        $usulanTerbaru = $usulan->where('status_usulan', 'terverifikasi')->where('created_at <=', date('Y-m-d'))->orderBy('created_at', "DESC")->first();
+
+        if (!empty($usulanTerlama)) {
+            $data = [
+                'usulan' => $usulan->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->where('status_usulan', 'terverifikasi')
+                    ->orderBy('created_at', 'ASC')
+                    ->findAll(),
+                'usulan_terbaru' => date('Y', strtotime($usulanTerbaru['created_at'])),
+                'usulan_lama' => date('Y', strtotime($usulanTerlama['created_at'])),
+            ];
+        } else {
+            $data = [
+                'usulan' => $usulan->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->where('status_usulan', 'terverifikasi')
+                    ->orderBy('created_at', 'ASC')
+                    ->findAll(),
+                'usulan_terbaru' => date('Y'),
+                'usulan_lama' => date('Y'),
+            ];
+        }
         return view('rekapan', $data);
     }
 

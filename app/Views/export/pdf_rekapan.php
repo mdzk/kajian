@@ -55,7 +55,7 @@
 </head>
 
 <body lang=EN-US>
-    <h1 align="center">Daftar Rekapan Pengajuan Kajian</h1>
+    <h1 align="center">Daftar Rekapan Pengajuan Kajian <?= isset($bulan) ? angkaKeBulan($bulan) . ' ' . $tahun : ''; ?></h1>
     <table width="100%" align="center">
         <thead>
             <tr class="h2">
