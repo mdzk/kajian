@@ -50,8 +50,21 @@
                         </div>
                         <div class="right">
                             <?php if (get_user('role') == 'admin') : ?>
-                                <button type="button" class="mb-3 btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#cetak"><i class="lni lni-printer d-flex me-2"></i> <span>Cetak</span></button>
-                                <!--Ajukan Kajian Modal Content -->
+
+                                <div class="dropdown">
+                                    <button class="mb-3 btn btn-primary d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="lni lni-printer d-flex me-2"></i> <span>Cetak</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <?= form_open('pdf/rekapan/semua'); ?>
+                                            <button class="dropdown-item" href="#">Semua</button>
+                                            <?= form_close(); ?>
+                                        </li>
+                                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#cetak">Filter</button></li>
+                                    </ul>
+                                </div>
+
                                 <div class="modal fade" id="cetak" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -91,9 +104,10 @@
                                     <th>Tgl Pengajuan</th>
                                     <th>Pengguna</th>
                                     <th>Kajian</th>
-                                    <th>Tipe</th>
                                     <th>Prihal</th>
                                     <th>Instansi</th>
+                                    <th>File KTP</th>
+                                    <th>File Permohonan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -105,9 +119,10 @@
                                         <td><?= $data['created_at']; ?></td>
                                         <td><?= $data['name']; ?></td>
                                         <td><?= $data['nama_kajian']; ?></td>
-                                        <td><span class="status-btn <?= ($data['tipe'] == 'dahulu') ? 'success' : (($data['tipe'] == 'akhir') ? 'primary' : 'light'); ?>-btn text-capitalize"><?= $data['tipe']; ?></span></td>
                                         <td><?= $data['prihal_usulan']; ?></td>
                                         <td><?= $data['instansi']; ?></td>
+                                        <td><a href="<?= base_url('bukti/' . $data['file_ktp']); ?>" class="btn btn-light"><i class="lni lni-remove-file"></i></a></td>
+                                        <td><a href="<?= base_url('bukti/' . $data['file_permohonan']); ?>" class="btn btn-light"><i class="lni lni-remove-file"></i></a></td>
                                         <td>
                                             <a href="<?= base_url('rekapan/show/' . $data['id_usulan']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
                                         </td>

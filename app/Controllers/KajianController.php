@@ -1,35 +1,33 @@
 <?php
 
-namespace App\Controllers\Kajian;
-
-use App\Controllers\BaseController;
+namespace App\Controllers;
 
 use App\Models\KajianModel;
 use App\Models\UsulanModel;
 
-class AntaraController extends BaseController
+class KajianController extends BaseController
 {
     public function index()
     {
         $kajian = new KajianModel();
         $data   = [
-            'kajian' => $kajian->where('tipe', 'antara')->findAll(),
+            'kajian' => $kajian->findAll(),
         ];
-        return view('admin/antara', $data);
+        return view('admin/kajian', $data);
     }
 
     public function add()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
-        return view('admin/antara-add');
+        return view('admin/kajian-add');
     }
 
     public function store()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         if ($this->validate([
             'kajian' => [
@@ -48,6 +46,13 @@ class AntaraController extends BaseController
             ],
             'prihal' => [
                 'label' => 'Prihal',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
+            'tanggal' => [
+                'label' => 'Tanggal',
                 'rules' => 'required',
                 'errors' => [
                     'required' => '{field} Wajib diisi !',
@@ -76,12 +81,12 @@ class AntaraController extends BaseController
                 'nama_kajian' => $this->request->getVar('kajian'),
                 'bidang' => $this->request->getVar('bidang'),
                 'prihal' => $this->request->getVar('prihal'),
-                'tipe' => 'antara',
+                'tanggal' => $this->request->getVar('tanggal'),
                 'file' => $fileName
             ]);
 
             session()->setFlashdata('pesan', 'Kajian berhasil ditambahkan');
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         } else {
             // JIKA TIDAK VALID
             Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
@@ -92,38 +97,38 @@ class AntaraController extends BaseController
     public function delete()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         $kajian = new KajianModel();
         if ($kajian->find($this->request->getVar('id_kajian')) == NULL) {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         $data = $kajian->find($this->request->getVar('id_kajian'));
         unlink('file/' . $data['file']);
         $kajian->delete($this->request->getVar('id_kajian'));
         session()->setFlashdata('pesan', 'Kajian berhasil dihapus');
-        return redirect()->to('kajian/antara');
+        return redirect()->to('kajian');
     }
 
     public function edit($id)
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         $kajian = new KajianModel();
         if ($kajian->find($id) == NULL) {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         $data = [
             'kajian'  => $kajian->find($id),
         ];
-        return view('admin/antara-edit', $data);
+        return view('admin/kajian-edit', $data);
     }
 
     public function update()
     {
         if (get_user('role') !== 'admin') {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         if ($this->validate([
             'kajian' => [
@@ -147,6 +152,13 @@ class AntaraController extends BaseController
                     'required' => '{field} Wajib diisi !',
                 ]
             ],
+            'tanggal' => [
+                'label' => 'Tanggal',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                ]
+            ],
         ])) {
             $kajian = new KajianModel();
             $cekKajianSekarang  = $kajian->find($this->request->getVar('id_kajian'));
@@ -165,6 +177,7 @@ class AntaraController extends BaseController
                     'nama_kajian' => $this->request->getVar('kajian'),
                     'bidang' => $this->request->getVar('bidang'),
                     'prihal' => $this->request->getVar('prihal'),
+                    'tanggal' => $this->request->getVar('tanggal'),
                 ];
             } else {
                 if ($this->validate([
@@ -182,6 +195,7 @@ class AntaraController extends BaseController
                         'nama_kajian' => $this->request->getVar('kajian'),
                         'bidang' => $this->request->getVar('bidang'),
                         'prihal' => $this->request->getVar('prihal'),
+                        'tanggal' => $this->request->getVar('tanggal'),
                         'file' => $fileName,
                     ];
 
@@ -199,7 +213,7 @@ class AntaraController extends BaseController
             $kajian->update();
 
             session()->setFlashdata('pesan', 'Kajian berhasil diubah');
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         } else {
             // JIKA TIDAK VALID
             Session()->setFlashdata('errors', \config\Services::validation()->getErrors());
@@ -217,18 +231,18 @@ class AntaraController extends BaseController
                 ->where('status_usulan', 'terverifikasi')
                 ->first();
             if ($data == NULL) {
-                return redirect()->to('kajian/antara');
+                return redirect()->to('kajian');
             }
         }
 
         $kajian = new KajianModel();
         $data = $kajian->find($id);
         if ($data == NULL) {
-            return redirect()->to('kajian/antara');
+            return redirect()->to('kajian');
         }
         $data = [
             'kajian'  => $kajian->find($id),
         ];
-        return view('admin/antara-show', $data);
+        return view('admin/kajian-show', $data);
     }
 }

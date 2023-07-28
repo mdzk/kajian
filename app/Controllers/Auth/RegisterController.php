@@ -32,6 +32,16 @@ class RegisterController extends BaseController
                     'max_length' => 'Maksimal {field} 16 Angka',
                 ]
             ],
+            'nohp' => [
+                'label' => 'Nomor Handphone',
+                'rules' => "required|is_unique[users.nohp]|min_length[10]|max_length[13]",
+                'errors' => [
+                    'required' => '{field} Wajib diisi !',
+                    'is_unique' => '{field} sudah digunakan, cari yang lain!',
+                    'min_length' => 'Minimal {field} 10 Angka',
+                    'max_length' => 'Maksimal {field} 13 Angka',
+                ]
+            ],
             'email' => [
                 'label' => 'Email',
                 'rules' => "required|is_unique[users.email]",
@@ -69,6 +79,7 @@ class RegisterController extends BaseController
                 'name' => $this->request->getVar('name'),
                 'email' => $this->request->getVar('email'),
                 'nik' => $this->request->getVar('nik'),
+                'nohp' => $this->request->getVar('nohp'),
                 'status' => $this->request->getVar('status'),
                 'role' => 'user',
                 'verification' => false,

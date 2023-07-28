@@ -67,7 +67,7 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="nik" class="form-label">NIK</label>
-                                                        <input type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="18720202020001" class="form-control" name="nik" required>
+                                                        <input type="number" maxlength="16" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);this.value = this.value.replace(/[^0-9]/g, '')" placeholder=" 18720202020001" class="form-control" name="nik" required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="email" class="form-label">Email</label>

@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="title mb-30">
-                        <h2>Antara</h2>
+                        <h2>Kajian</h2>
                     </div>
                 </div>
                 <!-- end col -->
@@ -33,7 +33,7 @@
                                     <a href="#0">Kajian</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Antara
+                                    Kajian
                                 </li>
                             </ol>
                         </nav>
@@ -49,11 +49,11 @@
                 <div class="card-style mb-30">
                     <div class="title d-flex flex-wrap align-items-center justify-content-between ">
                         <div class="left">
-                            <h6 class="text-medium mb-30">Data Kajian Antara</h6>
+                            <h6 class="text-medium mb-30">Data Kajian Kajian</h6>
                         </div>
                         <div class="right">
                             <?php if (get_user('role') == 'admin') : ?>
-                                <a href="<?= route_to('antara-add'); ?>" class="btn btn-primary">+ Kajian</a>
+                                <a href="<?= route_to('kajian-add'); ?>" class="btn btn-primary">+ Kajian</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -74,6 +74,7 @@
                                     <th>Kajian</th>
                                     <th>Bidang</th>
                                     <th>Prihal</th>
+                                    <th>Tanggal</th>
                                     <th>File</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -86,6 +87,7 @@
                                         <td><?= $data['nama_kajian']; ?></td>
                                         <td><?= $data['bidang']; ?></td>
                                         <td><?= $data['prihal']; ?></td>
+                                        <td><?= $data['tanggal']; ?></td>
                                         <td>
                                             <?php if (get_user('role') == 'admin' || get_user('role') == 'pimpinan') : ?>
                                                 <a href="<?= base_url('redirect/' . $data['id_kajian']); ?>" class="btn btn-light"><i class="lni lni-remove-file"></i></a>
@@ -93,6 +95,7 @@
                                             <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'terverifikasi')) : ?>
                                                 <a href="<?= base_url('redirect/' . $data['id_kajian']); ?>" class="btn btn-light"><i class="lni lni-remove-file"></i></a>
                                             <?php endif; ?>
+
                                             <?php if (!cekUsulan(session('id_users'), $data['id_kajian'], NULL) && get_user('role') == 'user') : ?>
                                                 <span class="status-btn close-btn">Tidak memiliki akses <?= cekUsulan(session('id_users'), $data['id_kajian'], NULL); ?></span>
                                             <?php endif; ?>
@@ -105,13 +108,14 @@
                                                 <span class="status-btn warning-btn">Sedang diproses</span>
                                             <?php endif; ?>
 
-                                            <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'revisi') && get_user('role') == 'user') : ?>
+                                            <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'revisi') || cekUsulan(session('id_users'), $data['id_kajian'], 'revisiadmin') && get_user('role') == 'user') : ?>
                                                 <span class="status-btn warning-btn">Harap direvisi</span>
                                             <?php endif; ?>
 
                                             <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'tolak') && get_user('role') == 'user') : ?>
                                                 <span class="status-btn close-btn">Akses ditolak</span>
                                             <?php endif; ?>
+
                                         </td>
                                         <td>
                                             <?php if (!cekUsulan(session('id_users'), $data['id_kajian'], NULL) && get_user('role') == 'user') : ?>
@@ -124,7 +128,7 @@
                                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Form Pengajuan</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form action="<?= route_to('usulan-store'); ?>" method="POST">
+                                                            <form action="<?= route_to('usulan-store'); ?>" method="POST" enctype="multipart/form-data">
                                                                 <input type="number" name="id_kajian" hidden value="<?= $data['id_kajian']; ?>">
                                                                 <div class="modal-body">
                                                                     <div class="mb-3">
@@ -134,6 +138,14 @@
                                                                     <div class="mb-3">
                                                                         <label for="instansi" class="form-label">Nama Instansi</label>
                                                                         <input type="text" class="form-control" id="instansi" name="instansi" placeholder="Universitas Indonesia">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="file_ktp" class="form-label">File KTP</label>
+                                                                        <input type="file" class="form-control" id="file_ktp" name="file_ktp" accept="image/png, image/jpeg">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="file_permohonan" class="form-label">File Permohonan</label>
+                                                                        <input type="file" class="form-control" id="file_permohonan" name="file_permohonan" accept="application/pdf">
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -147,7 +159,7 @@
                                                 <!--Ajukan Kajian Modal Content End-->
                                             <?php endif; ?>
                                             <?php if (get_user('role') == 'admin') : ?>
-                                                <a href="<?= base_url('kajian/antara/edit/' . $data['id_kajian']); ?>" class="btn btn-warning"><i class="lni lni-pencil"></i></a>
+                                                <a href="<?= base_url('kajian/edit/' . $data['id_kajian']); ?>" class="btn btn-warning"><i class="lni lni-pencil"></i></a>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapuskajian<?= $data['id_kajian']; ?>"><i class="lni lni-trash-can"></i></button>
                                                 <!--Hapus Kajian Modal Content -->
                                                 <div class="modal fade" id="hapuskajian<?= $data['id_kajian']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -157,7 +169,7 @@
                                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <form action="<?= route_to('antara-delete'); ?>" method="POST">
+                                                            <form action="<?= route_to('kajian-delete'); ?>" method="POST">
                                                                 <input type="number" name="id_kajian" hidden value="<?= $data['id_kajian']; ?>">
                                                                 <div class="modal-body">
                                                                     Apakah anda yakin ingin menghapus data ini?
@@ -173,10 +185,10 @@
                                                 <!--Hapus Kajian Modal Content End-->
                                             <?php endif; ?>
                                             <?php if (cekUsulan(session('id_users'), $data['id_kajian'], 'terverifikasi') && get_user('role') == 'user') : ?>
-                                                <a href="<?= base_url('kajian/antara/show/' . $data['id_kajian']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
+                                                <a href="<?= base_url('kajian/show/' . $data['id_kajian']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
                                             <?php endif; ?>
                                             <?php if (get_user('role') == 'admin' || get_user('role') == 'pimpinan') : ?>
-                                                <a href="<?= base_url('kajian/antara/show/' . $data['id_kajian']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
+                                                <a href="<?= base_url('kajian/show/' . $data['id_kajian']); ?>" class="btn btn-primary"><i class="lni lni-eye"></i></a>
                                             <?php endif; ?>
                                         </td>
                                     </tr>

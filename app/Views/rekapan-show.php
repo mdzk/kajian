@@ -71,12 +71,20 @@
                             <div class="alert alert-primary mt-2 mb-4">
                                 <p class="fs-6"><?= $data['nama_kajian']; ?></p>
                             </div>
-                            <h6>Tipe Kajian</h6>
-                            <p class="fs-6 mb-4"><span class="status-btn <?= ($data['tipe'] == 'dahulu') ? 'success' : (($data['tipe'] == 'akhir') ? 'primary' : 'light'); ?>-btn text-capitalize"><?= $data['tipe']; ?></span></p>
                             <h6>Bidang</h6>
                             <p class="fs-6 mb-4"><?= $data['bidang']; ?></p>
                             <h6>Prihal</h6>
                             <p class="fs-6 mb-4"><?= $data['prihal']; ?></p>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <h6>File KTP</h6>
+                            <img src="<?= base_url('bukti/' . $data['file_ktp']); ?>" width="300" alt="">
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <h6>File Permohonan</h6>
+                            <object data="<?= base_url('bukti/' . $data['file_permohonan']); ?>" type="application/pdf" width="100%" height="600px">
+                                <p>Alternative text - include a link <a href="<?= base_url('file/' . $data['file']); ?>">to the PDF!</a></p>
+                            </object>
                         </div>
                         <div class="col-md-12">
                             <h6>File</h6>

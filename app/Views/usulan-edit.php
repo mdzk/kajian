@@ -63,7 +63,7 @@
                     <?php endif; ?>
 
                     <!-- End Title -->
-                    <form action="<?= route_to('usulan-update'); ?>" method="POST">
+                    <form action="<?= route_to('usulan-update'); ?>" method="POST" enctype="multipart/form-data">
                         <input type="number" value="<?= $usulan['id_usulan']; ?>" name="id_usulan" hidden>
                         <div class="mb-3">
                             <label for="kajian" class="form-label">Kajian</label>
@@ -76,6 +76,16 @@
                         <div class="mb-3">
                             <label for="instansi" class="form-label">Instansi</label>
                             <input type="text" required value="<?= $usulan['instansi']; ?>" class="form-control" id="instansi" name="instansi" placeholder="Universitas Indonesia">
+                        </div>
+                        <div class="mb-3">
+                            <label for="file_ktp" class="form-label">File KTP</label>
+                            <input type="file" class="form-control" id="file_ktp" name="file_ktp" accept="image/png, image/jpeg">
+                            <span class="text-muted">* Kosongkan jika tidak ingin mengganti</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="file_permohonan" class="form-label">File Permohonan</label>
+                            <input type="file" class="form-control" id="file_permohonan" name="file_permohonan" accept="application/pdf">
+                            <span class="text-muted">* Kosongkan jika tidak ingin mengganti</span>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

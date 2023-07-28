@@ -78,6 +78,13 @@
                                         <!-- end col -->
                                         <div class="col-12">
                                             <div class="input-style-1">
+                                                <label>No Handphone</label>
+                                                <input autofocus maxlength="13" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" name="nohp" placeholder="089612341234" required />
+                                            </div>
+                                        </div>
+                                        <!-- end col -->
+                                        <div class="col-12">
+                                            <div class="input-style-1">
                                                 <label>Status</label>
                                                 <input autofocus type="text" name="status" placeholder="Pegawai" required />
                                             </div>

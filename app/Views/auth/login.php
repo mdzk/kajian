@@ -40,6 +40,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="signin-wrapper">
                             <div class="form-wrapper">
+                                <img src="<?= base_url(); ?>assets/images/logo.png" width="100" class="mb-3" alt="">
                                 <h6 class="mb-15">Sign In Form</h6>
                                 <p class="text-sm mb-25">
                                     Start creating the best possible user experience for you

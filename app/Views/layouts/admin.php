@@ -36,28 +36,13 @@
                     </a>
                 </li>
 
-                <li class="nav-item nav-item-has-children">
-                    <a href="#0" class="<?= get_url('kajian') ? '' : 'collapsed' ?>" data-bs-toggle="collapse" data-bs-target="#ddmenu_1" aria-controls="ddmenu_1" aria-expanded="<?= get_url('kajian') ? 'true' : 'false' ?>" aria-label="Toggle navigation">
+                <li class="nav-item <?= get_url('kajian') ? 'active' : '' ?>">
+                    <a href="<?= base_url('kajian'); ?>" class="">
                         <span class="icon">
-                            <i class="lni lni-briefcase"></i>
+                            <i class="lni lni-empty-file"></i>
                         </span>
-                        <span class="text">Kajian</span>
+                        <span class="text">Kajian </span>
                     </a>
-                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
-                        <li>
-                            <a href="<?= base_url('kajian/dahulu'); ?>" class="<?= get_url('dahulu') ? 'active' : '' ?>"> Dahulu </a>
-                        </li>
-                    </ul>
-                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
-                        <li>
-                            <a href="<?= base_url('kajian/antara'); ?>" class="<?= get_url('antara') ? 'active' : '' ?>"> Antara </a>
-                        </li>
-                    </ul>
-                    <ul id="ddmenu_1" class="collapse <?= get_url('kajian') ? 'show' : '' ?> dropdown-nav">
-                        <li>
-                            <a href="<?= base_url('kajian/akhir'); ?>" class="<?= get_url('akhir') ? 'active' : '' ?>"> Akhir </a>
-                        </li>
-                    </ul>
                 </li>
 
                 <span class="divider">

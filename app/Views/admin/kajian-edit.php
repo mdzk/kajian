@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="title mb-30">
-                        <h2>Pendahuluan</h2>
+                        <h2>Kajianan</h2>
                     </div>
                 </div>
                 <!-- end col -->
@@ -33,7 +33,7 @@
                                     <a href="#0">Kajian</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Pendahuluan
+                                    Kajianan
                                 </li>
                             </ol>
                         </nav>
@@ -49,10 +49,10 @@
                 <div class="card-style mb-30">
                     <div class="title d-flex flex-wrap align-items-center justify-content-between ">
                         <div class="left">
-                            <h6 class="text-medium mb-30">Edit Kajian Pendahuluan</h6>
+                            <h6 class="text-medium mb-30">Edit Kajian</h6>
                         </div>
                         <div class="right">
-                            <a href="<?= base_url('kajian/dahulu'); ?>" class="btn btn-outline-primary d-flex align-items-center">
+                            <a href="<?= base_url('kajian'); ?>" class="btn btn-outline-primary d-flex align-items-center">
                                 <i class="lni lni-chevron-left me-2 d-flex"></i> Kembali
                             </a>
                         </div>
@@ -66,7 +66,7 @@
                     <?php endif; ?>
 
                     <!-- End Title -->
-                    <form action="<?= route_to('dahulu-update'); ?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?= route_to('kajian-update'); ?>" method="POST" enctype="multipart/form-data">
                         <input type="number" value="<?= $kajian['id_kajian']; ?>" name="id_kajian" hidden>
                         <div class="mb-3">
                             <label for="kajian" class="form-label">Kajian</label>

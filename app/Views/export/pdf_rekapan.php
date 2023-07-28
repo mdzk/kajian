@@ -63,7 +63,6 @@
                 <th>TGL PENGAJUAN</th>
                 <th>NAMA PENGGUNA</th>
                 <th>NAMA KAJIAN</th>
-                <th>TIPE KAJIAN</th>
                 <th>PRIHAL PENGAJUAN</th>
                 <th>INSTANSI</th>
             </tr>
@@ -76,7 +75,6 @@
                     <td><?= $usulan['created_at']; ?></td>
                     <td><?= $usulan['name']; ?></td>
                     <td><?= $usulan['nama_kajian']; ?></td>
-                    <td><?= ($usulan['tipe'] == 'dahulu' ? 'Pendahuluan' : ($usulan['tipe'] == 'antara' ? 'Antara' : 'Akhir')); ?></td>
                     <td><?= $usulan['prihal_usulan']; ?></td>
                     <td><?= $usulan['instansi']; ?></td>
                 </tr>

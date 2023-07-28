@@ -8,6 +8,7 @@ class RekapanController extends BaseController
 {
     public function index()
     {
+        helper('form');
         $usulan = new UsulanModel();
 
         $data = [
