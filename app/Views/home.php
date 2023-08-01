@@ -13,18 +13,6 @@
         dataType: 'json'
     }).responseJSON;
 
-    var antara = $.ajax({
-        url: "<?= base_url() . 'json/kajian'; ?>",
-        async: false,
-        dataType: 'json'
-    }).responseJSON;
-
-    var akhir = $.ajax({
-        url: "<?= base_url() . 'json/kajian'; ?>",
-        async: false,
-        dataType: 'json'
-    }).responseJSON;
-
     const ctx1 = document.getElementById("Chart1").getContext("2d");
     const chart1 = new Chart(ctx1, {
         type: "line", // also try bar or other graph types
@@ -45,40 +33,12 @@
             ],
             // Information about the dataset
             datasets: [{
-                    label: "Kajian Pendahuluan",
+                    label: "Kajian",
                     backgroundColor: "transparent",
                     borderColor: "#4a6cf7",
                     data: pendahuluan,
                     pointBackgroundColor: "transparent",
                     pointHoverBackgroundColor: "#4a6cf7",
-                    pointBorderColor: "transparent",
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 5,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                },
-                {
-                    label: "Kajian Antara",
-                    backgroundColor: "transparent",
-                    borderColor: "#9b51e0",
-                    data: antara,
-                    pointBackgroundColor: "transparent",
-                    pointHoverBackgroundColor: "#9b51e0",
-                    pointBorderColor: "transparent",
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 3,
-                    pointBorderWidth: 5,
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
-                },
-                {
-                    label: "Kajian Akhir",
-                    backgroundColor: "transparent",
-                    borderColor: "#f2994a",
-                    data: akhir,
-                    pointBackgroundColor: "transparent",
-                    pointHoverBackgroundColor: "#f2994a",
                     pointBorderColor: "transparent",
                     pointHoverBorderColor: "#fff",
                     pointHoverBorderWidth: 3,

@@ -27,7 +27,10 @@ class Home extends BaseController
         if (get_user('role') == 'pimpinan') {
             $data = [
                 'kajian'  => $kajian->countAllResults(),
-                'usulan'  => $usulan->where('status_usulan', 'proses')->countAllResults(),
+                'usulan'  => $usulan->where(['status_usulan' => 'proses'])
+                    ->join('users', 'users.id_users = usulan.users_id')
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
+                    ->countAllResults(),
             ];
         }
 
@@ -36,6 +39,7 @@ class Home extends BaseController
                 'kajian'  => $kajian->countAllResults(),
                 'usulan'  => $usulan->where(['users_id' => session('id_users')])
                     ->where(['status_usulan !=' => 'terverifikasi'])
+                    ->join('kajian', 'kajian.id_kajian = usulan.id_kajian')
                     ->countAllResults(),
             ];
         }

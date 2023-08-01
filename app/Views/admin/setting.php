@@ -126,6 +126,32 @@
                                                 </div>
 
                                                 <div class="ms-3 name">
+                                                    <span class="text-muted">No Handphone</span>
+                                                    <h5 class="font-bold"><?= $user['nohp']; ?>
+                                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editnohp"> Edit
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card mx-2 my-2">
+                                <div class="card-body py-4 px-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar me-1">
+                                                    <div class="stats-icon red">
+                                                        <i class="iconly-boldShield-Done"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="ms-3 name">
                                                     <span class="text-muted">Email</span>
                                                     <h5 class="font-bold"><?= $user['email']; ?>
                                                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editemail"> Edit
@@ -255,6 +281,33 @@
                                         <div class="form-group">
                                             <label for="basicInput">Masukkan NIK</label>
                                             <input type="number" value="<?= $user['nik']; ?>" name="nik" class="form-control" id="basicInput" placeholder="ketik disini">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">
+                                            <span class="d-sm-block">Batal</span>
+                                        </button>
+                                        <button type="submit" name="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                                            <span class="d-sm-block">Simpan</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Edit NIK Modal Content End-->
+
+                        <!--Edit NO HP Modal Content -->
+                        <div class="modal fade text-left modal-borderless" id="editnohp">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Edit No HP</h5>
+                                    </div>
+                                    <input type="hidden" wire:model="categoryId">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="basicInput">Masukkan No HP</label>
+                                            <input type="number" value="<?= $user['nohp']; ?>" name="nohp" class="form-control" id="basicInput" placeholder="ketik disini">
                                         </div>
                                     </div>
                                     <div class="modal-footer">

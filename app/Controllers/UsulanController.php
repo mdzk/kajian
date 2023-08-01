@@ -184,8 +184,16 @@ class UsulanController extends BaseController
                 $file_permohonanName = $usulanData['file_permohonan'];
             }
 
+            if ($usulanData['status_usulan'] == 'revisiadmin' || $usulanData['status_usulan'] == 'tolak') {
+                $status_usulan = 'pending';
+            }
+
+            if ($usulanData['status_usulan'] == 'revisi') {
+                $status_usulan = 'proses';
+            }
+
             $data = [
-                'status_usulan' => $usulanData['status_usulan'] == 'revisiadmin' ? 'pending' : 'proses',
+                'status_usulan' => $status_usulan,
                 'keterangan' => NULL,
                 'prihal_usulan' => $this->request->getVar('prihal'),
                 'instansi' => $this->request->getVar('instansi'),

@@ -81,6 +81,10 @@
                             <input type="text" value="<?= $kajian['prihal']; ?>" class="form-control" id="prihal" name="prihal" placeholder="KKN1">
                         </div>
                         <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= $kajian['tanggal']; ?>">
+                        </div>
+                        <div class="mb-3">
                             <label for="file" class="form-label">File</label>
                             <input type="file" class="form-control" id="file" name="file" accept="application/pdf">
                             <span class="text-muted">* Kosongkan file, jika tidak ingin mengubah</span>

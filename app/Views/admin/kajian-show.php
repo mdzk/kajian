@@ -66,6 +66,8 @@
                             </div>
                             <h6>Bidang</h6>
                             <p class="fs-6 mb-4"><?= $kajian['bidang']; ?></p>
+                            <h6>Tanggal Kajian</h6>
+                            <p class="fs-6 mb-4"><?= $kajian['tanggal']; ?></p>
                             <h6>Prihal</h6>
                             <p class="fs-6 mb-4"><?= $kajian['prihal']; ?></p>
                         </div>
